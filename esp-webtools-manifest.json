@@ -1,0 +1,16 @@
+{
+  "name": "IngeniousKink/LVS-Gateway",
+  "version": "0.0.3",
+  "funding_url": "https://github.com/IngeniousKink/LVS-Gateway/contributors",
+  "builds": [
+    {
+      "chipFamily": "ESP32-S3",
+      "parts": [
+        {
+          "path": "firmware/IngeniousKink_LVS-Gateway_esp32s3_b3.bin",
+          "offset": 0
+        }
+      ]
+    }
+  ]
+}
