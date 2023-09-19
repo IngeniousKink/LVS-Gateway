@@ -1,24 +1,12 @@
 # LVS-Gateway
 
-ESP32 firmware that speaks Lovense BLE protocol to broadcast commands for MuSE/LoveSpouse toys.
+ESP32 firmware that speaks Lovense BLE protocol to broadcast commands for MuSE, LoveSpouse, Leten toys.
 
 # Motivation
 
 You bought a cheap vibrating toy from China that claims App support but you find out you can not control it via XToys.app/buttplug.io/etc. and want to make that work.
 
-# Installation & Usage
-
-Prerequisites
-
-- ESP32 or ESP32-S3 development board
-- USB cable
-- Google Chrome or Microsoft Edge browser
-
-Installation
-
-1. Go to https://ingeniouskink.github.io/LVS-Gateway/
-2. Plug in your ESP32 board
-3. Press the [connect] button and follow the instructions
+# Usage
 
 Use
 
@@ -36,7 +24,7 @@ A: Yes, just connect a Lovense device via bluetooth.
 
 Q: Does this support buttplug.io
 
-A: Probably yes (untested).
+A: Yes (tested!).
 
 ---
 

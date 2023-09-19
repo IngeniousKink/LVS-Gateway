@@ -15,9 +15,11 @@
 static const char* TAG = "lovense";
 
 #define LOVENSE_SERVICE_UUID "0000fff0-0000-1000-8000-00805f9b34fb"
-#define LOVENSE_CHARACTERISTIC_UUID "0000fff0-0000-1000-8000-00805f9b34fb"
+#define LOVENSE_CHARACTERISTIC_TX_UUID "0000fff1-0000-1000-8000-00805f9b34fb"
+#define LOVENSE_CHARACTERISTIC_RX_UUID "0000fff2-0000-1000-8000-00805f9b34fb"
 
-static NimBLECharacteristic *pLovenseCharacteristic = nullptr;
+static NimBLECharacteristic *pLovenseCharacteristic_tx = nullptr;
+static NimBLECharacteristic *pLovenseCharacteristic_rx = nullptr;
 
 class ConnectionEventHandler : public NimBLEServerCallbacks {
     void onConnect(NimBLEServer *pServer) {
@@ -154,14 +156,21 @@ void lovense_init() {
     // Create a new service
     NimBLEService *pService = pServer->createService(LOVENSE_SERVICE_UUID);
 
-    // Create a new characteristic for the lovense data
-    pLovenseCharacteristic = pService->createCharacteristic(
-        LOVENSE_CHARACTERISTIC_UUID,
-        NIMBLE_PROPERTY::READ | NIMBLE_PROPERTY::WRITE
+    // Create a new tx characteristic for the lovense data
+    pLovenseCharacteristic_tx = pService->createCharacteristic(
+        LOVENSE_CHARACTERISTIC_TX_UUID,
+        NIMBLE_PROPERTY::NOTIFY
     );
- 
 
-    pLovenseCharacteristic->setCallbacks(new CharacteristicCallbacks());
+    pLovenseCharacteristic_tx->createDescriptor("2904");
+
+    // Create a new rx characteristic for the lovense data
+    pLovenseCharacteristic_rx = pService->createCharacteristic(
+        LOVENSE_CHARACTERISTIC_RX_UUID,
+        NIMBLE_PROPERTY::WRITE | NIMBLE_PROPERTY::WRITE_NR
+    );
+
+    pLovenseCharacteristic_rx->setCallbacks(new CharacteristicCallbacks());
 
     // Start the service
     pService->start();
